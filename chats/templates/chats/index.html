@@ -1,0 +1,80 @@
+{% load static %}
+{% load chats_tag %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="left">
+                <div class="top">
+                    <input type="text" style="width: 100%;" placeholder="Search" />
+                </div>
+                <ul class="people">
+                    {% get_all_chats as all_chats %}
+
+                    {% for chat in all_chats %}
+                        {% if current_chat.telegram_user.id == chat.telegram_user.id %}
+                            <li class="person active" data-chat="person1">
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/dog.png" alt="" />
+                                <span class="name">{{ chat.telegram_user.id }}</span>
+        {#                        <span class="time">{{ chat.last_messag }}</span>#}
+                                <span class="preview">{{ chat.last_message }}</span>
+                            </li>
+                        {% else %}
+                            <a href="{% url 'chats' %}?chat={{ chat.id }}">
+                            <li class="person" data-chat="person1">
+
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/dog.png" alt="" />
+                            <span class="name">{{ chat.telegram_user.id }}</span>
+    {#                        <span class="time">{{ chat.last_messag }}</span>#}
+                            <span class="preview">{{ chat.last_message }}</span>
+                            </li>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="right">
+                {% if current_chat %}
+                    <div class="top"><span>To: <span class="name">{{ current_chat.telegram_user.id }}</span></span></div>
+                    <div class="chat active-chat" data-chat="person1">
+
+                        {% for message in current_chat.messages.all %}
+
+{#                            <div class="conversation-start">#}
+{#                            <span>{{ message.created_at.date }}</span>#}
+{#                            </div>#}
+                            {% if message.is_bot %}
+                                <div class="bubble me">
+                                {{ message.text }}
+                                </div>
+                            {% else %}
+
+                                <div class="bubble you">
+                                    {{message.text}}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="write">
+                        <a href="javascript:;" class="write-link attach"></a>
+                        <input type="text" />
+                        <a href="javascript:;" class="write-link smiley"></a>
+                        <a href="javascript:;" class="write-link send"></a>
+                    </div>
+                {% else %}
+                    Select chat
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
