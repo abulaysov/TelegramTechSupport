@@ -21,6 +21,7 @@ from django.views.static import serve
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
+from chats.api.v1.routers import urls as chats_v1_routers
 from users.api.v1.routers import urls as users_v1_routers
 
 urlpatterns = [
@@ -33,6 +34,7 @@ urlpatterns = [
     ),
     path("", include("chats.urls")),
     *users_v1_routers,
+    *chats_v1_routers,
     re_path(
         r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}
     ),

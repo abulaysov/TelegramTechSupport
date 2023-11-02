@@ -6,17 +6,23 @@ from django.shortcuts import render
 from django.views import View
 
 from chats import models
+from users.services import TokenGetter
 
 
 class ChatView(View):
     def get(self, request):
         is_chat = self._get_chat_param()
         if not is_chat:
+            user_token = TokenGetter(username=request.user.username).execute()
+            request.session["auth_token"] = user_token
             return render(request, "chats/index.html")
 
         chat = self._get_chat()
         context_data = {"current_chat": chat}
         return render(request, "chats/index.html", context=context_data)
+
+    def _get_chat_param(self) -> str | None:
+        return self.request.GET.get("chat")  # noqa
 
     def _get_chat(self) -> models.Chat | NoReturn:
         chat_id = self._get_chat_param()
@@ -33,9 +39,6 @@ class ChatView(View):
             raise Http404()
 
         return chat
-
-    def _get_chat_param(self) -> str | None:
-        return self.request.GET.get("chat")  # noqa
 
     def _validate_chat_param(self, param: str):
         if re.fullmatch(r"\d+", self._get_chat_param()):

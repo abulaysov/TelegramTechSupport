@@ -15,6 +15,10 @@ drf-spectacular = "^0.26.5"
 gunicorn = "^21.2.0"
 django-filter = "^23.3"
 python-dotenv = "^1.0.0"
+channels = "^4.0.0"
+djangochannelsrestframework = "^1.2.0"
+uvicorn = "^0.23.2"
+websockets = "^12.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -27,6 +31,8 @@ factory-boy = "^3.3.0"
 django-stubs = "^4.2.5"
 types-psycopg2 = "^2.9.21.14"
 djangorestframework-stubs = "^3.14.4"
+daphne = "^4.0.0"
+pyngrok = "^7.0.0"
 
 [build-system]
 requires = ["poetry-core"]
