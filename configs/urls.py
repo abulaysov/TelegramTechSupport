@@ -33,6 +33,7 @@ urlpatterns = [
         name="api-docs",
     ),
     path("", include("chats.urls")),
+    path("", include("users.urls")),
     *users_v1_routers,
     *chats_v1_routers,
     re_path(
@@ -44,3 +45,4 @@ urlpatterns = [
         {'document_root': settings.STATIC_ROOT},
     ),
 ]
+

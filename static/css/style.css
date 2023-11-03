@@ -121,6 +121,12 @@ body {
     border-radius: 50%;
     object-fit: cover;
 }
+
+/*.person img {*/
+/*    width: 50px !important;*/
+/*    height: 50px !important;*/
+/*}*/
+
 .container .left .people .person .name {
     font-size: 14px;
     line-height: 22px;
