@@ -9,8 +9,26 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/asgi/
 
 import os
 
+import django
 from django.core.asgi import get_asgi_application
+
+from channels.routing import ProtocolTypeRouter, URLRouter
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "configs.settings")
 
-application = get_asgi_application()
+
+def get_ws_application():
+    from users.ws_auth import WSAuthMiddleware  # noqa
+
+    from .ws_urls import urlpatterns  # noqa
+
+    django.setup(set_prefix=False)
+    return WSAuthMiddleware(URLRouter(urlpatterns))
+
+
+application = ProtocolTypeRouter(
+    {
+        "http": get_asgi_application(),
+        "websocket": get_ws_application(),
+    }
+)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "drf_spectacular",
     "django_filters",
+    "channels",
     "configs",
     "users",
     "chats",
@@ -156,6 +157,14 @@ REST_FRAMEWORK = {
     ],
 }
 
+CHANNEL_LAYERS = {
+    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}
+}
+
+TELEGRAM_BOT_TOKEN = "5557386036:AAG6H5f_6JE5hVLYx5MH2BZLwbZ1w2lJmRw"
+TELEGRAM_API_TEMPLATE = "https://api.telegram.org/bot{token}".format(
+    token=TELEGRAM_BOT_TOKEN + "/{method}"
+)
 
 # debug toolbar
 if DEBUG:

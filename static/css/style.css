@@ -399,7 +399,10 @@ body {
 .left {
     overflow: scroll;
 }
-
+/*.right {*/
+/*    overflow: scroll !important;*/
+/*    display: block !important;*/
+/*}*/
 .person {
     margin-left: -40px !important;
     width: calc(100% + 40px) !important;

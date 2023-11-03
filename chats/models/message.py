@@ -15,4 +15,4 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.text[:10]} | Chat: {self.chat.telegram_user}"
+        return f"{self.text[:10]} | Chat: {self.chat}"

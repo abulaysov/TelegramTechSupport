@@ -1,7 +1,11 @@
-local_up:
+local_build:
 	docker-compose build --parallel
 	docker-compose up
 	docker-compose logs -f web db
+
+local_up:
+	docker-compose up
+
 
 local_down:
 	docker-compose down

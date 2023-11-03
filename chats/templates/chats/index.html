@@ -1,6 +1,7 @@
 {% load static %}
 {% load chats_tag %}
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatApp</title>
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <script>
+      const csrfToken = "{{ csrf_token }}"
+      const authToken = "{{ request.session.auth_token }}"
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -44,7 +49,7 @@
             <div class="right">
                 {% if current_chat %}
                     <div class="top"><span>To: <span class="name">{{ current_chat.telegram_user.id }}</span></span></div>
-                    <div class="chat active-chat" data-chat="person1">
+                    <div id="current__chat" class="chat active-chat" data-chat="person1">
 
                         {% for message in current_chat.messages.all %}
 
@@ -65,10 +70,12 @@
                     </div>
 
                     <div class="write">
-                        <a href="javascript:;" class="write-link attach"></a>
-                        <input type="text" />
-                        <a href="javascript:;" class="write-link smiley"></a>
-                        <a href="javascript:;" class="write-link send"></a>
+{#                        <a href="javascript:;" class="write-link attach"></a>#}
+{#                        <form onclick="submitSend('message')">#}
+                        <input id="message" type="text" />
+{#                        <a href="javascript:;" class="write-link smiley"></a>#}
+                        <a onclick="submitSend()" class="write-link send"></a>
+{#                        </form>#}
                     </div>
                 {% else %}
                     Select chat
@@ -76,5 +83,6 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
