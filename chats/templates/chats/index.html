@@ -27,7 +27,7 @@
                     {% for chat in all_chats %}
                         {% if current_chat.telegram_user.id == chat.telegram_user.id %}
                             <li class="person active" data-chat="person1">
-                                <img src="{% static '/img/person.jpg' %}" alt="" />
+                                <img src="{% static '/img/cat.jpg' %}" alt="" />
                                 <span class="name">{{ chat.telegram_user.id }}</span>
         {#                        <span class="time">{{ chat.last_messag }}</span>#}
                                 <span class="preview">{{ chat.last_message }}</span>
@@ -36,7 +36,7 @@
                             <a href="{% url 'chats' %}?chat={{ chat.id }}">
                             <li class="person" data-chat="person1">
 
-                            <img src="{% static '/img/person.jpg' %}" alt="" />
+                            <img src="{% static '/img/cat.jpg' %}" alt="" />
                             <span class="name">{{ chat.telegram_user.id }}</span>
     {#                        <span class="time">{{ chat.last_messag }}</span>#}
                             <span class="preview">{{ chat.last_message }}</span>
@@ -70,12 +70,12 @@
                     </div>
 
                     <div class="write">
-{#                        <a href="javascript:;" class="write-link attach"></a>#}
-{#                        <form onclick="submitSend('message')">#}
+                        <a href="javascript:;" class="write-link attach"></a>
+                        <form onclick="submitSend('message')">
                         <input id="message" type="text" />
-{#                        <a href="javascript:;" class="write-link smiley"></a>#}
+                        <a href="javascript:;" class="write-link smiley"></a>
                         <a onclick="submitSend()" class="write-link send"></a>
-{#                        </form>#}
+                        </form>
                     </div>
                 {% else %}
                     <label style="position: center">Select chat</label>

@@ -2,17 +2,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let socket = new WebSocket(`ws://127.0.0.1:8000/ws/?token=${authToken}`);
     socket.onmessage = function (event) {
         let data = JSON.parse(event.data);
+        console.log(data)
         addMessage(data.text, 'you')
   };
 }, false);
 
 
 function addMessage(value, author) {
+    currentChatElement = document.getElementById("current__chat")
+    if (currentChatElement === null) {
+        return
+    }
+    activeChat = document.getElementById("active__chat")
+    // if activeChat.
     const newDiv = document.createElement("div");
     newDiv.classList.add('bubble')
     newDiv.classList.add(author)
     newDiv.innerText = value
-    document.getElementById("current__chat").appendChild(newDiv)
+    currentChatElement.appendChild(newDiv)
 }
 
 function clearInputField(message_tag) {
