@@ -1,10 +1,11 @@
 import re
 from typing import NoReturn
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.shortcuts import render
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 from chats import models
 from users.services import TokenGetter
 
@@ -47,4 +48,3 @@ class ChatView(LoginRequiredMixin, View):
         if re.fullmatch(r"\d+", self._get_chat_param()):
             return True
         return False
-

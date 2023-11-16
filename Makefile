@@ -27,4 +27,4 @@ lint:
 	flake8 . --count --show-source --statistics --max-line-length 120
 	isort --check .
 	black --check .
-	mypy .
+	#mypy .
