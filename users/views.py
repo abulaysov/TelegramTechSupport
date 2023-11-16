@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.views import View
+
 from users import models
 
 
 class LoginView(View):
-
     def get(self, request):  # noqa
         return render(request, "users/login.html")
 
@@ -17,4 +17,3 @@ class LoginView(View):
             login(request, user)
             return redirect("chats")
         return render(request, "users/login.html")
-

@@ -45,4 +45,3 @@ urlpatterns = [
         {'document_root': settings.STATIC_ROOT},
     ),
 ]
-
