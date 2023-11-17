@@ -1,0 +1,10 @@
+.git*
+.env*
+env*
+docker*
+Dockerfile
+.docker*
+Makefile
+README*
+docs
+nginx

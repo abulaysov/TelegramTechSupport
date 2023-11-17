@@ -1,5 +1,5 @@
 staticfiles
 .idea
 __pycache__
-.env
+.env*
 .*_cache
