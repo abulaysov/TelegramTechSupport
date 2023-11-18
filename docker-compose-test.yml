@@ -1,0 +1,45 @@
+version: '3'
+
+x-common-variables: &common-variables
+    ALLOWED_HOSTS: "*"
+    DEBUG: "True"
+    SECRET_KEY: "django-insecure-1anolspcrdcxu!vj8c5x01b62=c8#$i0+&l@mib^tt30i+^&5z"
+    POSTGRES_DB: postgres
+    POSTGRES_HOST: db
+    POSTGRES_NAME: postgres
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_PORT: 5432
+    POSTGRES_USER: postgres
+
+
+services:
+  tts-backend-dev:
+    container_name: tts-backend-dev
+    build:
+      context: .
+      args:
+        - DEV=true
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py collectstatic --noinput &&
+             uvicorn --host=0.0.0.0 --port=8000 --reload configs.asgi:application"
+    expose:
+      - 8000
+    depends_on:
+      - tts-db
+    volumes:
+      - .:/app
+    environment: *common-variables
+
+  tts-db:
+    image: postgres:15-alpine
+    container_name: tts-db
+    restart: unless-stopped
+    volumes:
+       - postgres_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    environment: *common-variables
+
+volumes:
+  postgres_data:

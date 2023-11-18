@@ -1,20 +1,28 @@
+up:
+	docker-compose --profile prod up
+
+down:
+	docker-compose --profile prod down
+
+shell:
+	docker-compose exec tts-backend bash
+
+
+
 local_build:
-	docker-compose build --parallel
-	docker-compose up
-	docker-compose logs -f web db
+	docker-compose --profile development build
 
 local_up:
-	docker-compose up
-
+	docker-compose --profile development up
 
 local_down:
-	docker-compose down
+	docker-compose --profile development down
 
 local_shell:
-	docker-compose exec web bash
+	docker-compose exec tts-backend-dev bash
 
 test:
-	docker-compose run --rm web sh -c "pytest"
+	docker-compose run --rm tts-backend-dev sh -c "pytest"
 
 
 format:
