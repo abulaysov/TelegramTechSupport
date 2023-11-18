@@ -15,5 +15,5 @@ jobs:
 
       - name: Lint and Test
         run: |
-          docker-compose -f docker-compose-test.yml run --rm  tts-backend-dev sh -c "make lint"
-          docker-compose -f docker-compose-test.yml run --rm -u root tts-backend-dev sh -c "pytest"
+          docker-compose -f docker-compose-test.yml run --rm tts-backend-dev sh -c "make lint"
+          docker-compose -f docker-compose-test.yml run --rm tts-backend-dev sh -c "pytest"
