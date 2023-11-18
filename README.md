@@ -1,5 +1,9 @@
 # `TelegramTechSupport `
 ___
+## Requirements:
+ - Docker
+ - docker-compose
+<br>
 
 ## Description of TTS:
 #### Django application that provides to support chat for your projects via Telegram, there's two ways for chat:
