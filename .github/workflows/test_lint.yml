@@ -25,5 +25,5 @@ jobs:
           POSTGRES_USER=postgres
           SECRET_KEY='django-insecure-1anolspcrdcxu\!vj8c5x01b62=c8#$i0+&l@mib^tt30i+^&5z'
           " > .env
-          docker-compose --profile development run --rm tts-backend sh -c "make lint"
-          docker-compose --profile development run --rm -u root tts-backend sh -c "pytest"
+          docker-compose --profile development run --rm tts-backend-dev sh -c "make lint"
+          docker-compose --profile development run --rm -u root tts-backend-dev sh -c "pytest"
