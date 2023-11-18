@@ -25,5 +25,5 @@ jobs:
           echo POSTGRES_DB="postgres" >> .env
           echo ALLOWED_HOSTS="*" >> .env
           cat .env
-          docker-compose --profile development run --rm  --env-file .env tts-backend-dev sh -c "make lint"
-          docker-compose --profile development run --rm -u root --env-file .env tts-backend-dev sh -c "pytest"
+          docker-compose --env-file .env --profile development run --rm  tts-backend-dev sh -c "make lint"
+          docker-compose --env-file .env --profile development run --rm -u root tts-backend-dev sh -c "pytest"
