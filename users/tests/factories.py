@@ -11,3 +11,10 @@ class BaseUserFactory(DjangoModelFactory):
 
 class ActiveUserFactory(BaseUserFactory):
     username = factory.Sequence(lambda n: 'username_{}'.format(n))
+
+
+class BaseUserFactory(DjangoModelFactory):
+    class Meta:
+        model = models.TelegramUser
+
+    id = factory.Sequence(lambda n: n)
