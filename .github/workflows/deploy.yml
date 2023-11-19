@@ -13,10 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Lint and Test
-        run: |
-          docker-compose -f docker-compose-test.yml run --rm  tts-backend-dev sh -c "make lint"
-          docker-compose -f docker-compose-test.yml run --rm -u root tts-backend-dev sh -c "pytest"
+      - name: Lint
+        run: docker-compose -f docker-compose-test.yml run --rm tts-backend-dev sh -c "make lint"
+
+      - name: Test
+        run: docker compose -f docker-compose-test.yml run --rm tts-backend-dev sh -c "pytest -p no:cacheprovider"
 
   deploy:
     needs: test-lint # This line ensures deploy only runs after test-lint
