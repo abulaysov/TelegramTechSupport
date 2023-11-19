@@ -15,5 +15,6 @@ jobs:
 
       - name: Lint and Test
         run: |
+          git config --system --add safe.directory '*'
           docker-compose -f docker-compose-test.yml run --rm tts-backend-dev sh -c "make lint"
           docker-compose -f docker-compose-test.yml run --rm tts-backend-dev sh -c "pytest"
