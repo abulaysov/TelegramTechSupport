@@ -11,3 +11,6 @@ ___
 - web interface via telegram bot (in future)
 
 ![img.png](docs/img.png)
+
+## How it works
+![howitworks](docs/howitworks.gif)
