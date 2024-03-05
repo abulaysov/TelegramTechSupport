@@ -15,7 +15,6 @@ class ChatAPIConsumer(AsyncAPIConsumer):
         await super().connect()
 
     async def send_message(self, event):
-        print(event)
         await self.send(text_data=json.dumps(event["data"]))
 
     async def disconnect(self, code):
